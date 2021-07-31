@@ -1,0 +1,26 @@
+server:
+  port: 8081
+
+logging:
+  level:
+    root: ERROR
+    org.springframework.web: DEBUG
+    org.springframework.security: DEBUG
+    org.springframework.security.oauth2: DEBUG
+    com.identicum: DEBUG
+
+
+
+claim:
+  roles:
+    keycloak:
+      client-id: portal-api
+#   claim-name: permission
+
+# https://docs.spring.io/spring-security/site/docs/current/reference/html5/#oauth2resourceserver
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://host.docker.internal:8080/auth/realms/Kavak/protocol/openid-connect/certs
