@@ -1,6 +1,8 @@
-# oauth-demoapi-spring
+# oauth-demoapi-jwt-rbac-spring
 Spring OAuth demo api acting as [OAuth2 Resource Server](https://docs.spring.io/spring-security/site/docs/current/reference/html5/#oauth2resourceserver).
-The api protection is based on user's Keycloak Client Role in the access token (jwt)
+
+The API Protection is based on user's Keycloak Client Role in the access token (jwt) following the Open API specs for the Product API.
+See  [v1-openapi.yml](/src/main/resources/v1-openapi.yml)
 
 ## Run the API
 
