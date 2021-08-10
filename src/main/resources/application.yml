@@ -11,11 +11,13 @@ logging:
 
 
 
+# We developed a custom Converter for parsing the Keycloak client roles 
+# If you want to use it, you must follow the syntax: 'keycloak-client-role:{client_id}'
+# Otherwise just put the claim name that you want to use for identifying the permission claim
 claim:
   roles:
-    keycloak:
-      client-id: portal-api
-#   claim-name: permission
+     claim-name: keycloak-client-role:portal-api
+#    claim-name: permissions
 
 # https://docs.spring.io/spring-security/site/docs/current/reference/html5/#oauth2resourceserver
 spring:

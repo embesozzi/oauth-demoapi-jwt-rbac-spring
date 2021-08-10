@@ -44,7 +44,7 @@ public class ProductController
 		return ResponseEntity.created(location).body(created);
 	}
 
-	@PreAuthorize("hasAnyRole('delete.product')")
+	@PreAuthorize("hasAnyRole('delete.product','admin')")
 	@DeleteMapping("{id}")
 	public void delete(@PathVariable long id) {
 		log.debug("Deleting product id {}", id );

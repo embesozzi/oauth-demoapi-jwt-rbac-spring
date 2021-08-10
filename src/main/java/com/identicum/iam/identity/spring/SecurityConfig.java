@@ -16,13 +16,17 @@ import com.identicum.iam.identity.oauth2.KeycloakResourceClientRoleConverter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Locale;
+
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static final Logger logger = LoggerFactory.getLogger(Application.class);
 
-    @Value("${claim.roles.keycloak.client-id}")
-    private String roleClientId;
+    private static final String KEYCLOAK_ROLE_CLIENT = "keycloak-client-role";
+
+    @Value("${claim.roles.claim-name}")
+    private String roleClaimName;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -43,11 +47,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public JwtAuthenticationConverter jwtAuthenticationConverter() {
 
         JwtGrantedAuthoritiesConverter grantedAuthoritiesConverter = new JwtGrantedAuthoritiesConverter();
-        // grantedAuthoritiesConverter.setAuthorityPrefix("PERMISSION_");
         JwtAuthenticationConverter jwtAuthenticationConverter = new JwtAuthenticationConverter();
-        KeycloakResourceClientRoleConverter keycloak = new KeycloakResourceClientRoleConverter();
-        keycloak.setRoleClientId(roleClientId);
-        jwtAuthenticationConverter.setJwtGrantedAuthoritiesConverter(keycloak);
+
+        if (roleClaimName.toLowerCase().contains(KEYCLOAK_ROLE_CLIENT)) {
+            String clientId = roleClaimName.split(":")[1];
+            KeycloakResourceClientRoleConverter keycloak = new KeycloakResourceClientRoleConverter();
+            keycloak.setRoleClientId(clientId);
+            jwtAuthenticationConverter.setJwtGrantedAuthoritiesConverter(keycloak);
+        }
+        else {
+            grantedAuthoritiesConverter.setAuthorityPrefix(roleClaimName.toUpperCase());
+        }
+
         return jwtAuthenticationConverter;
     }
     
