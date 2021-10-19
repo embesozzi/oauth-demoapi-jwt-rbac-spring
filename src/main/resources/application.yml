@@ -1,5 +1,5 @@
 server:
-  port: 8081
+  port: 8088
 
 logging:
   level:
@@ -16,7 +16,7 @@ logging:
 # Otherwise just put the claim name that you want to use for identifying the permission claim
 claim:
   roles:
-     claim-name: keycloak-client-role:portal-api
+     claim-name: keycloak-client-role:product-api
 #    claim-name: permissions
 
 # https://docs.spring.io/spring-security/site/docs/current/reference/html5/#oauth2resourceserver
@@ -25,4 +25,4 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          jwk-set-uri: http://host.docker.internal:8080/auth/realms/Kavak/protocol/openid-connect/certs
+          jwk-set-uri: http://host.docker.internal:8080/auth/realms/HrvatskiTelekom/protocol/openid-connect/certs
