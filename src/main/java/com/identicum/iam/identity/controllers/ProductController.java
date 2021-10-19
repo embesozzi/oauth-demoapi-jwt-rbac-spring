@@ -13,9 +13,9 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 
-@CrossOrigin
 @RestController
-@RequestMapping("/api/products")
+@CrossOrigin
+@RequestMapping(value={"/api/products", "/api/public/products"})
 public class ProductController
 {
 
