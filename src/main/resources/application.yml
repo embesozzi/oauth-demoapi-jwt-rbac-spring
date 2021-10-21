@@ -25,4 +25,4 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          jwk-set-uri: http://host.docker.internal:8080/auth/realms/HrvatskiTelekom/protocol/openid-connect/certs
+          jwk-set-uri: ${OIDC_JWK_SET_URI}
